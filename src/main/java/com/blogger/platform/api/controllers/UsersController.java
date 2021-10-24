@@ -7,10 +7,12 @@ import com.blogger.platform.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/")
 public class UsersController {
 
     private UserService userService;
@@ -21,32 +23,42 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @PostMapping("/add")
+    @PostMapping("add")
     public Result add(@RequestBody User user) {
         return this.userService.add(user);
     }
 
-    @PostMapping("/delete")
-    public Result delete(@RequestBody User user) {
-        return this.userService.delete(user);
+    @PostMapping("addFollower")
+    public Result addFollower(@RequestBody User user) {
+        /*Set<Integer> followers = new HashSet<>();
+        followers.add(5);
+        followers.add(6);
+        followers.add(10);
+        user.setUser_follower(followers);*/
+        return this.userService.addFollower(user);
     }
 
-    @GetMapping("/getall")
+    @PostMapping("delete")
+    public Result delete(@RequestParam int userId) {
+        return this.userService.delete(userId);
+    }
+
+    @GetMapping("getAll")
     public DataResult<List<User>> getAll() {
         return this.userService.getAll();
     }
 
-    @GetMapping("/getByUserId")
-    public DataResult<User> getByUserId(@RequestParam int userId) {
-        return this.userService.getByUserId(userId);
+    @GetMapping("getById")
+    public DataResult<User> getById(@RequestParam int userId) {
+        return this.userService.getById(userId);
     }
 
-    @GetMapping("/getByUserName")
+    @GetMapping("getByUserName")
     public DataResult<User> getByUserName(@RequestParam String userName) {
         return this.userService.getByUserName(userName);
     }
 
-    @GetMapping("/getByEmail")
+    @GetMapping("getByEmail")
     public DataResult<User> getByEmail(@RequestParam String email) {
         return this.userService.getByEmail(email);
     }

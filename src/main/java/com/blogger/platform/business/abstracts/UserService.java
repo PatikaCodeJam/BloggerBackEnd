@@ -9,11 +9,13 @@ import java.util.List;
 public interface UserService {
     Result add(User user);
 
-    Result delete(User user);
+    Result addFollower(User user);
+
+    Result delete(int userId);
 
     DataResult<List<User>> getAll();
 
-    DataResult<User> getByUserId(int userId);
+    DataResult<User> getById(int userId);
 
     DataResult<User> getByUserName(String userName);
 

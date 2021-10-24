@@ -30,8 +30,14 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public Result delete(User user) {
-        this.userDao.delete(user);
+    public Result addFollower(User user) {
+        this.userDao.save(user);
+        return new SuccessResult("Follower added.");
+    }
+
+    @Override
+    public Result delete(int userId) {
+        this.userDao.deleteById(userId);
         return new SuccessResult("User deleted.");
     }
 
@@ -41,8 +47,8 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public DataResult<User> getByUserId(int userId) {
-        return new SuccessDataResult<>(this.userDao.getByUserId(userId), "Data listed.");
+    public DataResult<User> getById(int userId) {
+        return new SuccessDataResult<>(this.userDao.getById(userId), "Data listed.");
     }
 
     @Override
