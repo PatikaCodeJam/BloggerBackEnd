@@ -1,13 +1,11 @@
 package com.blogger.platform.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,10 +24,11 @@ public class Comment {
     @Column(name = "commentDate")
     private LocalDate commentDate;
 
-    @OneToMany(mappedBy = "comment")
-    private List<Blog> blogs;
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @OneToMany
-    @JoinColumn(name = "comment")
-    private List<User> users;
+    @ManyToOne()
+    @JoinColumn(name = "blog_id")
+    private Blog blog;
 }

@@ -54,8 +54,7 @@ public class User {
     private List<Blog> blogs;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
 }

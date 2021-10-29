@@ -1,17 +1,21 @@
 package com.blogger.platform.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "blogs")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "comments"})
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +42,7 @@ public class Blog {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne()
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
+    @JsonIgnore
+    @OneToMany(mappedBy = "blog")
+    private List<Comment> comments;
 }
