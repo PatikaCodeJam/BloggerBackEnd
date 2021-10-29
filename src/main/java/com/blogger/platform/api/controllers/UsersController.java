@@ -29,15 +29,15 @@ public class UsersController {
         return this.userService.add(user);
     }
 
-    @PostMapping("addFollower")
+/*    @PostMapping("addFollower")
     public Result addFollower(@RequestBody User user) {
-        /*Set<Integer> followers = new HashSet<>();
+        *//*Set<Integer> followers = new HashSet<>();
         followers.add(5);
         followers.add(6);
         followers.add(10);
-        user.setUser_follower(followers);*/
+        user.setUser_follower(followers);*//*
         return this.userService.addFollower(user);
-    }
+    }*/
 
     @PostMapping("delete")
     public Result delete(@RequestParam int userId) {

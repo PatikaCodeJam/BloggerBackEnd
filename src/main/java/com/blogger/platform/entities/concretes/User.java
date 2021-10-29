@@ -44,8 +44,18 @@ public class User {
     @Column(name = "user_follower")
     private Set<Integer> user_follower = new HashSet<>();
 
+    @ElementCollection
+    @CollectionTable(name = "user_followings", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "user_following")
+    private Set<Integer> user_following = new HashSet<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Blog> blogs;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
 }

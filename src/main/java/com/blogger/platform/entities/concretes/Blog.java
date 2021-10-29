@@ -37,4 +37,8 @@ public class Blog {
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne()
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 }
